@@ -1,1 +1,1 @@
-# investment-app
+# invest-track app to track investments
