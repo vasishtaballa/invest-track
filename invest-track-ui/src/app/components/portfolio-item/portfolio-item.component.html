@@ -1,0 +1,83 @@
+<div class="modal-header">
+    <h4 class="modal-title pull-left">Stock Details</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <form>
+        <div class="form-row">
+            <div class="form-group col-md-4">
+                <label for="tradeDate">Date</label>
+                <input type="text" autocomplete="off" class="form-control" #dp="bsDatepicker" bsDatepicker name="tradeDate"
+                    [(ngModel)]="stock.tradeDate">
+            </div>
+            <div class="form-group col-md-4">
+                <label for="name">Stock Name</label>
+                <input type="text" autocomplete="off" class="form-control" id="name" name="name"
+                    [(ngModel)]="stock.name">
+            </div>
+            <div class="form-group col-md-4">
+                <label for="sector">Stock Sector</label>
+                <input type="text" autocomplete="off" class="form-control" id="sector" name="sector"
+                    [(ngModel)]="stock.sector">
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-4">
+                <label for="symbol">Stock Symbol</label>
+                <input type="text" autocomplete="off" class="form-control" id="symbol" name="symbol"
+                    [(ngModel)]="stock.symbol">
+            </div>
+            <div class="form-group col-md-4">
+                <label for="mcSymbol">MC Stock Symbol</label>
+                <input type="text" autocomplete="off" class="form-control" id="mcSymbol" name="mcSymbol"
+                    [(ngModel)]="stock.mcSymbol">
+            </div>
+            <div class="form-group col-md-4">
+                <label for="exchange">Exchange</label>
+                <input type="text" autocomplete="off" class="form-control" id="exchange" name="exchange"
+                    [(ngModel)]="stock.exchange">
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-4">
+                <label for="tradeMode">Trade Mode</label>
+                <select class="form-control" name="tradeMode" [(ngModel)]="stock.tradeMode">
+                    <option selected>Choose...</option>
+                    <option value="b">Buy</option>
+                    <option value="s">Sell</option>
+                </select>
+            </div>
+            <div class="form-group col-md-4">
+                <label for="price">Price</label>
+                <input type="text" autocomplete="off" class="form-control" id="price" name="price"
+                    [(ngModel)]="stock.price">
+            </div>
+            <div class="form-group col-md-4">
+                <label for="qty">Quantity</label>
+                <input type="text" autocomplete="off" class="form-control" id="qty" name="qty" [(ngModel)]="stock.qty">
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-4">
+                <label for="target">Target (%)</label>
+                <input type="text" autocomplete="off" class="form-control" id="target" name="target"
+                    [(ngModel)]="stock.target">
+            </div>
+            <div class="form-group col-md-4">
+                <label for="brokerage">Brokerage (%)</label>
+                <input type="text" autocomplete="off" class="form-control" id="brokerage" name="brokerage"
+                    [(ngModel)]="stock.brokerage">
+            </div>
+            <div class="form-group col-md-4">
+                <label for="total">Total</label>
+                <input type="text" autocomplete="off" readonly class="form-control" id="total" name="total"
+                    [(ngModel)]="stock.total">
+            </div>
+        </div>
+    </form>
+</div>
+<div class="modal-footer">
+    <button type="submit" class="btn btn-primary" (click)="addStock()">Add</button>
+</div>
