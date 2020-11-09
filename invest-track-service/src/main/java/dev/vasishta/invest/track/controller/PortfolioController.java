@@ -23,6 +23,6 @@ public class PortfolioController {
         BaseBean baseBean = new BaseBean();
         List<Trade> trades = portfolioService.getPortfolio(baseBean);
         baseBean.setResponse(trades);
-        return new ResponseEntity<BaseBean>(baseBean, HttpStatus.ACCEPTED);
+        return new ResponseEntity<BaseBean>(baseBean, HttpStatus.OK);
     }
 }

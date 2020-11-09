@@ -1,9 +1,7 @@
 package dev.vasishta.invest.track.service;
 
 import dev.vasishta.invest.track.bean.BaseBean;
-import dev.vasishta.invest.track.bean.Message;
 import dev.vasishta.invest.track.bean.Trade;
-import dev.vasishta.invest.track.bean.response.PortfolioResponse;
 import dev.vasishta.invest.track.dao.PortfolioDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
