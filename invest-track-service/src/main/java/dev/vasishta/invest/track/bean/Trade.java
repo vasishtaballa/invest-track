@@ -12,11 +12,12 @@ public class Trade {
     private String mcSymbol;
     private Date date;
     private String exchange;
-    private String mode;
     private double price;
     private int qty;
     private double target;
     private double brokerage;
-    private double gross;
+    private double pbt;
+    private double brokerageAmount;
+    private double taxes;
     private double net;
 }
