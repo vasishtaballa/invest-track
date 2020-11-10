@@ -2,14 +2,19 @@
     <form class="form-inline">
         <div class="form-group col-md-2 mb-2">
             <label for="date">Date</label>
-            <input type="text" autocomplete="off" class="form-control" name="date" [(ngModel)]="deposit.date">
+            <input type="text" autocomplete="off" class="form-control ml-2" name="date" #dp="bsDatepicker" bsDatepicker
+                [(ngModel)]="deposit.date">
         </div>
-        <div class="form-group col-md-3">
+        <div class="form-group col-md-6">
             <label for="amount">Amount</label>
-            <input type="text" autocomplete="off" class="form-control" id="amount" name="amount" [(ngModel)]="deposit.amount">
-        </div>
-        <div class="form-group col-md-2">
-            <button class="btn btn-primary" (click)="addTransaction()">Add transaction</button>
+            <input type="text" autocomplete="off" class="form-control ml-2" id="amount" name="amount"
+                [(ngModel)]="deposit.amount">
+            <button class="btn btn-primary ml-3" (click)="addTransaction()">Add transaction</button>
         </div>
     </form>
+    <div class="col-6 mt-2" *ngIf="rowData.length > 0">
+        <ag-grid-angular style="width: 100%; height: 500px;" class="ag-theme-alpine" [rowData]="rowData"
+            [columnDefs]="columnDefs" (gridReady)="onGridReady($event)" [gridOptions]="gridOptions">
+        </ag-grid-angular>
+    </div>
 </div>

@@ -18,4 +18,8 @@ public interface Queries {
     String DELETE_BALANCE_TRADE = "DELETE FROM `sample`.`balance_trades` WHERE buyTradeId = ?;";
 
     String INSERT_SELL_TRADES = "INSERT INTO `sample`.`sell_trades` ( `buyTradeId`, `date`, `price`, `qty`, `margin`, `brokerage`, `pbt`, `brokerageAmount`, `taxes`, `net`) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
+
+    String ADD_DEPOSIT = "INSERT INTO `sample`.`deposits` (`date`, `amount`) VALUES (?, ?);";
+
+    String GET_DEPOSITS = "SELECT * FROM `sample`.`deposits`";
 }

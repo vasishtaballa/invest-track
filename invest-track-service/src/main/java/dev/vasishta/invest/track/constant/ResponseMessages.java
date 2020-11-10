@@ -17,4 +17,9 @@ public interface ResponseMessages {
 
     String INSERT_SELL_TRADES_FAIL = "Failed to insert into sell trades. Please try again later";
     String INSERT_SELL_TRADES_SUCCESS = "Successfully inserted into sell trades";
+
+    String INSERT_DEPOSIT_FAIL = "Failed to insert into deposits. Please try again later";
+    String INSERT_DEPOSIT_SUCCESS = "Successfully inserted into deposits";
+
+    String GET_DEPOSIT_FAIL = "Failed to fetch deposits. Please try again later";
 }

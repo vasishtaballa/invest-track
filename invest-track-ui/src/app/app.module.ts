@@ -14,10 +14,14 @@ import { FormsModule } from '@angular/forms';
 import { HeaderComponent } from './components/header/header.component';
 import { PortfolioComponent } from './components/portfolio/portfolio.component';
 import { PortfolioItemComponent } from './components/portfolio-item/portfolio-item.component';
+import { SellEquityModalComponent } from './components/sell-equity-modal/sell-equity-modal.component';
+import { SellBtnRendererComponent } from './components/ag-grid-components/sell-btn-renderer/sell-btn-renderer.component';
+import { TradingAmountComponent } from './components/trading-amount/trading-amount.component';
 
 
 const routes: Routes = [
-  {path: 'portfolio', component: PortfolioComponent}
+  {path: 'portfolio', component: PortfolioComponent},
+  {path: 'trading-amount', component: TradingAmountComponent}
 ]
 
 @NgModule({
@@ -25,7 +29,10 @@ const routes: Routes = [
     AppComponent,
     HeaderComponent,
     PortfolioComponent,
-    PortfolioItemComponent
+    PortfolioItemComponent,
+    SellEquityModalComponent,
+    SellBtnRendererComponent,
+    TradingAmountComponent
   ],
   imports: [
     BrowserModule,
