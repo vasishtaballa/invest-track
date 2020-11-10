@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { ColDef, FrameworkComponentWrapper, GridApi } from 'ag-grid-community';
+import { ColDef, FrameworkComponentWrapper, GridApi, GridOptions } from 'ag-grid-community';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { PortfolioColDefs } from 'src/app/constants/grid-col-defs/portfolio-col-defs.constant';
 import { ServiceURLs } from 'src/app/constants/service-urls.constant';
 import { HttpService } from 'src/app/services/http/http.service';
+import { SellBtnRendererComponent } from '../ag-grid-components/sell-btn-renderer/sell-btn-renderer.component';
 import { PortfolioItemComponent } from '../portfolio-item/portfolio-item.component';
 
 @Component({
@@ -14,12 +15,13 @@ import { PortfolioItemComponent } from '../portfolio-item/portfolio-item.compone
 export class PortfolioComponent implements OnInit {
 
   private bsModalRef: BsModalRef;
-  private stock: any = {};
+  private equity: any = {};
   public rowData = [];
   public columnDefs: ColDef[];
   public gridApi: GridApi;
   public gridColumnApi;
   public frameworkComponents;
+  public gridOptions: GridOptions;
 
 
   constructor(private bsModalService: BsModalService, private httpService: HttpService) {
@@ -27,9 +29,21 @@ export class PortfolioComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.initialize();
+  }
+
+  initialize(): void {
     this.httpService.get(this.httpService.getCompleteURL(ServiceURLs.GET_PORTFOLIO))
       .subscribe(res => {
         this.columnDefs = PortfolioColDefs.COLUMN_DEFS;
+        this.frameworkComponents = {
+          sellBtnRenderer: SellBtnRendererComponent
+        };
+        this.gridOptions = {
+          context: {
+            componentParent: this
+          }
+        };
         let response = res.response;
         this.updatePortfolio(response);
       });
@@ -65,14 +79,25 @@ export class PortfolioComponent implements OnInit {
     this.gridApi.sizeColumnsToFit();
   }
 
-  addStock(): void {
+  addTrade(): void {
     const initialState = {
-      stock: this.stock
+      equity: this.equity
     }
     this.bsModalRef = this.bsModalService.show(PortfolioItemComponent, { initialState, class: 'modal-lg' });
     this.bsModalRef.content.event.subscribe(res => {
-      console.log(res);
+      this.submitTrade(res);
     });
+  }
+
+  refreshPortfolio(data: any): void {
+    this.initialize();
+  }
+
+  submitTrade(equity: any): void {
+    this.httpService.post(this.httpService.getCompleteURL(ServiceURLs.ADD_TRADE), equity)
+      .subscribe(res => {
+        this.refreshPortfolio(res);
+      })
   }
 
 }

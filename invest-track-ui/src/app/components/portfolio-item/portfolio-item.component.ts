@@ -8,17 +8,27 @@ import { BsModalRef } from 'ngx-bootstrap/modal';
 })
 export class PortfolioItemComponent implements OnInit {
 
-  stock: any;
+  equity: any;
   private event: EventEmitter<any> = new EventEmitter();
 
   constructor(public bsModalRef: BsModalRef) { }
 
   ngOnInit(): void {
-    this.stock = {};
+    this.equity = {};
   }
 
-  addStock(): void {
-    this.event.emit(this.stock);
+  calculateAmounts(event: any): void {
+    let id = event.target.id;
+    if(id !== 'pbt')
+      this.equity.pbt = (parseFloat(this.equity.price) * parseFloat(this.equity.qty)).toFixed(2);
+    if(id !== 'brokerageAmount')
+      this.equity.brokerageAmount = ((parseFloat(this.equity.pbt) * parseFloat(this.equity.brokerage)) / 100).toFixed(2);
+    if(id !== 'net')
+      this.equity.net = (parseFloat(this.equity.pbt) + parseFloat(this.equity.brokerageAmount) + parseFloat(this.equity.taxes)).toFixed(2);
+  }
+
+  addEquity(): void {
+    this.event.emit(this.equity);
     this.bsModalRef.hide();
   }
 

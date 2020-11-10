@@ -6,62 +6,78 @@ export namespace PortfolioColDefs {
         {
             headerName: 'Equity Name',
             field: 'equityName',
-            suppressSizeToFit: false
+            resizable: true
         },
         {
             headerName: 'Trade Date',
             field: 'date',
             valueFormatter: dateFormatter,
-            suppressSizeToFit: false
+            resizable: true
         },
         {
             headerName: 'Exchange',
             field: 'exchange',
-            suppressSizeToFit: false
+            resizable: true
         },
         {
             headerName: 'Trade Price',
             field: 'price',
-            suppressSizeToFit: false
+            resizable: true
         },
         {
             headerName: 'Current Price',
             field: 'currentPrice',
-            suppressSizeToFit: false
+            resizable: true
         },
         {
             headerName: 'Quantity',
             field: 'qty',
-            suppressSizeToFit: false
+            resizable: true
         },
         {
             headerName: 'Brokerage (%)',
             field: 'brokerage',
-            suppressSizeToFit: false
+            valueFormatter: percentageFormatter,
+            resizable: true
         },
         {
             headerName: 'Target (%)',
             field: 'target',
-            suppressSizeToFit: false
+            valueFormatter: percentageFormatter,
+            resizable: true
         },
         {
             headerName: 'Margin (%)',
             field: 'margin',
-            suppressSizeToFit: false
+            valueFormatter: percentageFormatter,
+            resizable: true
         },
         {
-            headerName: 'Gross',
-            field: 'gross',
-            suppressSizeToFit: false
+            headerName: 'Price Before Tax',
+            field: 'pbt',
+            resizable: true
+        },
+        {
+            headerName: 'Brokerage Amount',
+            field: 'brokerageAmount',
+            resizable: true
+        },
+        {
+            headerName: 'Taxes',
+            field: 'taxes',
+            resizable: true
         },
         {
             headerName: 'Net',
             field: 'net',
-            suppressSizeToFit: false
+            resizable: true
+        },
+        {
+            headerName: '',
+            cellRenderer: 'sellBtnRenderer'
         },
         {
             field: 'mcSymbol',
-            suppressSizeToFit: false,
             hide: true
         }
     ];
@@ -69,5 +85,10 @@ export namespace PortfolioColDefs {
     function dateFormatter(params): string {
         let date: moment.Moment = moment(params.data.date);
         return date.format('DD-MMM-YYYY');
+    }
+    
+    function percentageFormatter(params): string {
+        let key = params.colDef.field;
+        return params.data[key] + ' %';
     }
 }

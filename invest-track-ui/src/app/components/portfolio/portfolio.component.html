@@ -1,10 +1,10 @@
 <div class="container-fluid">
     <div class="row">
-        <button class="btn btn-primary" (click)="addStock()">Add stock</button>
+        <button class="btn btn-primary" (click)="addTrade()">Add Trade</button>
     </div>
-    <div class="row" *ngIf="rowData.length > 0">
+    <div class="row mt-2" *ngIf="rowData.length > 0">
         <ag-grid-angular style="width: 100%; height: 500px;" class="ag-theme-alpine" [rowData]="rowData"
-            [columnDefs]="columnDefs" (gridReady)="onGridReady($event)">
+            [columnDefs]="columnDefs" (gridReady)="onGridReady($event)" [frameworkComponents]="frameworkComponents" [gridOptions]="gridOptions">
         </ag-grid-angular>
     </div>
 </div>

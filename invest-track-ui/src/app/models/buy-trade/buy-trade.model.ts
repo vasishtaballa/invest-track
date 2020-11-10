@@ -1,4 +1,4 @@
-export class Trade {
+export class BuyTrade {
     id: number;
     equitySymbol: string;
     equityName: string;
@@ -9,6 +9,8 @@ export class Trade {
     qty: number;
     target: number;
     brokerage: number;
-    gross: number;
+    pbt: number;
+    brokerageAmount: number;
+    taxes: number;
     net: number;
 }
