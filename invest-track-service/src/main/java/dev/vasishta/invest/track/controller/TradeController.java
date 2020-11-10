@@ -2,6 +2,7 @@ package dev.vasishta.invest.track.controller;
 
 import dev.vasishta.invest.track.bean.BaseBean;
 import dev.vasishta.invest.track.bean.BuyTrade;
+import dev.vasishta.invest.track.bean.SellTrade;
 import dev.vasishta.invest.track.service.TradeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -22,6 +23,13 @@ public class TradeController {
     public ResponseEntity<BaseBean> addTrade(@RequestBody BuyTrade buyTrade) {
         BaseBean baseBean = new BaseBean();
         tradeService.addTrade(buyTrade, baseBean);
+        return new ResponseEntity<BaseBean>(baseBean, HttpStatus.OK);
+    }
+
+    @PostMapping("/sellEquity")
+    public ResponseEntity<BaseBean> sellEquity(@RequestBody SellTrade sellTrade) {
+        BaseBean baseBean = new BaseBean();
+        tradeService.sellEquity(sellTrade, baseBean);
         return new ResponseEntity<BaseBean>(baseBean, HttpStatus.OK);
     }
 }

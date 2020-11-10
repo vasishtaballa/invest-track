@@ -5,17 +5,13 @@ import lombok.Data;
 import java.sql.Date;
 
 @Data
-public class BuyTrade {
+public class SellTrade {
     private int id;
-    private String equitySymbol;
-    private String mcSymbol;
-    private String name;
-    private String sector;
+    private BuyTrade buyTrade;
     private Date date;
-    private String exchange;
     private double price;
     private int qty;
-    private double target;
+    private double margin;
     private double brokerage;
     private double pbt;
     private double brokerageAmount;
