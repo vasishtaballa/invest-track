@@ -20,13 +20,13 @@ public class DepositController {
     public ResponseEntity<BaseBean> addDeposit(@RequestBody Deposit deposit) {
         BaseBean baseBean = new BaseBean();
         depositService.addDeposit(deposit, baseBean);
-        return new ResponseEntity<BaseBean>(baseBean, HttpStatus.OK);
+        return new ResponseEntity<>(baseBean, HttpStatus.OK);
     }
 
     @GetMapping("/getDeposits")
     public ResponseEntity<BaseBean> getDeposits() {
         BaseBean baseBean = new BaseBean();
         depositService.getDeposits(baseBean);
-        return new ResponseEntity<BaseBean>(baseBean, HttpStatus.OK);
+        return new ResponseEntity<>(baseBean, HttpStatus.OK);
     }
 }

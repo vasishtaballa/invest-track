@@ -22,4 +22,16 @@ public interface Queries {
     String ADD_DEPOSIT = "INSERT INTO `sample`.`deposits` (`date`, `amount`) VALUES (?, ?);";
 
     String GET_DEPOSITS = "SELECT * FROM `sample`.`deposits`";
+
+    String DB_TOTAL_INVESTMENTS = "SELECT SUM(net) AS total_invested FROM buy_trades buy;";
+
+    String DB_TOTAL_WITHDREW = "SELECT SUM(net) AS total_withdrew FROM sell_trades sell;";
+
+    String DB_TOTAL_TAXES = "SELECT SUM(taxes) FROM buy_trades UNION SELECT SUM(taxes) FROM sell_trades;";
+
+    String DB_TOTAL_BROKERAGE = "SELECT SUM(brokerageAmount) FROM buy_trades UNION SELECT SUM(brokerageAmount) FROM sell_trades;";
+
+    String DB_OTHER_DETAILS = "SELECT bal.buyTradeId, bal.equitySymbol, eq.mcSymbol, buy.date, buy.exchange, buy.price, buy.qty, buy.target, buy.pbt, buy.brokerageAmount, buy.brokerage, buy.taxes, buy.net, bal.qty 'balQty' FROM buy_trades buy JOIN balance_trades bal ON bal.buyTradeId = buy.id JOIN equities eq ON buy.equitySymbol = eq.symbol;";
+
+    String TOTAL_PROFIT_MARGIN = "SELECT ROUND(sell.net - buy.net, 2) AS profit, ROUND(((sell.net - buy.net) / buy.net) * 100, 2) AS margin FROM sample.sell_trades sell JOIN sample.buy_trades buy ON buy.id = sell.buyTradeId;";
 }

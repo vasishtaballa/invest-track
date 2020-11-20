@@ -19,12 +19,14 @@ export class PortfolioItemComponent implements OnInit {
 
   calculateAmounts(event: any): void {
     let id = event.target.id;
-    if(id !== 'pbt')
+    if (id !== 'pbt')
       this.equity.pbt = (parseFloat(this.equity.price) * parseFloat(this.equity.qty)).toFixed(2);
-    if(id !== 'brokerageAmount')
+    if (id !== 'brokerageAmount')
       this.equity.brokerageAmount = ((parseFloat(this.equity.pbt) * parseFloat(this.equity.brokerage)) / 100).toFixed(2);
-    if(id !== 'net')
+    if (id !== 'net')
       this.equity.net = (parseFloat(this.equity.pbt) + parseFloat(this.equity.brokerageAmount) + parseFloat(this.equity.taxes)).toFixed(2);
+    if (id !== 'brokerage')
+      this.equity.brokerage = ((parseFloat(this.equity.brokerageAmount) * 100) / parseFloat(this.equity.pbt)).toFixed(2);
   }
 
   addEquity(): void {

@@ -46,6 +46,11 @@ public class DBConfig {
         properties.setProperty("dataSource.prepStmtCacheSqlLimit", preparedStatementCacheSqlLimit);
         properties.setProperty("driverClassName", driverClassName);
         properties.setProperty("dataSource.driverClassName", driverClassName);
-        dataSource = new HikariDataSource(new HikariConfig(properties));
+        HikariConfig hikariConfig = new HikariConfig(properties);
+        hikariConfig.setMaximumPoolSize(20);
+        hikariConfig.setConnectionTimeout(300000);
+        hikariConfig.setConnectionTimeout(120000);
+        hikariConfig.setLeakDetectionThreshold(300000);
+        dataSource = new HikariDataSource(hikariConfig);
     }
 }

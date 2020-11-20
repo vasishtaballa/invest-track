@@ -26,7 +26,9 @@ export class SellEquityModalComponent implements OnInit {
     if (id !== 'brokerageAmount')
       this.sellEqty.brokerageAmount = ((parseFloat(this.sellEqty.pbt) * parseFloat(this.sellEqty.brokerage)) / 100).toFixed(2);
     if (id !== 'net')
-      this.sellEqty.net = (parseFloat(this.sellEqty.pbt) + parseFloat(this.sellEqty.brokerageAmount) + parseFloat(this.sellEqty.taxes)).toFixed(2);
+      this.sellEqty.net = (parseFloat(this.sellEqty.pbt) - parseFloat(this.sellEqty.brokerageAmount) - parseFloat(this.sellEqty.taxes)).toFixed(2);
+    if (id !== 'brokerage')
+      this.sellEqty.brokerage = ((parseFloat(this.sellEqty.brokerageAmount) * 100) / parseFloat(this.sellEqty.pbt)).toFixed(2);
     this.sellEqty.margin = (((parseFloat(this.sellEqty.price) - parseFloat(this.buyEqty.price)) / parseFloat(this.buyEqty.price)) * 100).toFixed(2);
   }
 

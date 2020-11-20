@@ -17,12 +17,15 @@ import { PortfolioItemComponent } from './components/portfolio-item/portfolio-it
 import { SellEquityModalComponent } from './components/sell-equity-modal/sell-equity-modal.component';
 import { SellBtnRendererComponent } from './components/ag-grid-components/sell-btn-renderer/sell-btn-renderer.component';
 import { TradingAmountComponent } from './components/trading-amount/trading-amount.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
 
 
 const routes: Routes = [
-  {path: 'portfolio', component: PortfolioComponent},
-  {path: 'trading-amount', component: TradingAmountComponent}
-]
+  { path: 'portfolio', component: PortfolioComponent },
+  { path: 'trading-amount', component: TradingAmountComponent },
+  { path: 'dashboard', component: DashboardComponent },
+  { path: '', redirectTo: 'dashboard', pathMatch: 'full' }
+];
 
 @NgModule({
   declarations: [
@@ -32,7 +35,8 @@ const routes: Routes = [
     PortfolioItemComponent,
     SellEquityModalComponent,
     SellBtnRendererComponent,
-    TradingAmountComponent
+    TradingAmountComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,

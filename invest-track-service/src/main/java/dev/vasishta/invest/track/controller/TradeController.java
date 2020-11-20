@@ -23,13 +23,13 @@ public class TradeController {
     public ResponseEntity<BaseBean> addTrade(@RequestBody BuyTrade buyTrade) {
         BaseBean baseBean = new BaseBean();
         tradeService.addTrade(buyTrade, baseBean);
-        return new ResponseEntity<BaseBean>(baseBean, HttpStatus.OK);
+        return new ResponseEntity<>(baseBean, HttpStatus.OK);
     }
 
     @PostMapping("/sellEquity")
     public ResponseEntity<BaseBean> sellEquity(@RequestBody SellTrade sellTrade) {
         BaseBean baseBean = new BaseBean();
         tradeService.sellEquity(sellTrade, baseBean);
-        return new ResponseEntity<BaseBean>(baseBean, HttpStatus.OK);
+        return new ResponseEntity<>(baseBean, HttpStatus.OK);
     }
 }

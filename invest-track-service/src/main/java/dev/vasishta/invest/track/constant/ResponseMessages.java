@@ -22,4 +22,6 @@ public interface ResponseMessages {
     String INSERT_DEPOSIT_SUCCESS = "Successfully inserted into deposits";
 
     String GET_DEPOSIT_FAIL = "Failed to fetch deposits. Please try again later";
+
+    String GET_DB_FAIL = "Failed to fetch dashboard details. Please try again later";
 }
