@@ -22,10 +22,12 @@ export class PortfolioComponent implements OnInit {
   public gridColumnApi;
   public frameworkComponents;
   public gridOptions: GridOptions;
-
+  public defaultColDef: ColDef;
 
   constructor(private bsModalService: BsModalService, private httpService: HttpService) {
-
+    this.defaultColDef = {
+      sortable: true
+    };
   }
 
   ngOnInit(): void {
