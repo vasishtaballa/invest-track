@@ -6,5 +6,6 @@ export namespace ServiceURLs {
     export const ADD_DEPOSIT = 'deposit/addDeposit';
     export const GET_DEPOSITS = 'deposit/getDeposits';
     export const GET_DASHBOARD = 'dashboard/getDashboard';
+    export const GET_TYPEHEAD_DATA = 'typeHead/getTypeHeads';
     export const MC_PRICE_API = 'https://priceapi.moneycontrol.com/pricefeed/';
 }

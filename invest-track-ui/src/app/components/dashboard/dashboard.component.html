@@ -2,28 +2,28 @@
     <div class="row mt-5">
         <div class="col-md-3">
             <div class="card-counter bg-danger">
-                <span class="count-numbers">{{ dashboard.totalInvestments | currency:'INR':true }}</span>
+                <span class="count-numbers">{{ dashboard.totalInvestments | inrCurrency }}</span>
                 <span class="count-name">Total Investments</span>
             </div>
         </div>
 
         <div class="col-md-3">
             <div class="card-counter bg-dark">
-                <span class="count-numbers">{{ dashboard.totalWithdrew | currency:'INR':true }}</span>
+                <span class="count-numbers">{{ dashboard.totalWithdrew | inrCurrency }}</span>
                 <span class="count-name">Total Withdrew</span>
             </div>
         </div>
 
         <div class="col-md-3">
             <div class="card-counter bg-success">
-                <span class="count-numbers">{{ dashboard.totalTaxes | currency:'INR':true }}</span>
+                <span class="count-numbers">{{ dashboard.totalTaxes | inrCurrency }}</span>
                 <span class="count-name">Total Taxes</span>
             </div>
         </div>
 
         <div class="col-md-3">
             <div class="card-counter bg-warning">
-                <span class="count-numbers">{{ dashboard.totalBrokerage | currency:'INR':true }}</span>
+                <span class="count-numbers">{{ dashboard.totalBrokerage | inrCurrency }}</span>
                 <span class="count-name">Total Brokerage</span>
             </div>
         </div>
@@ -32,28 +32,28 @@
     <div class="row mt-3">
         <div class="col-md-3">
             <div class="card-counter bg-warning">
-                <span class="count-numbers">{{ dashboard.currentInvestments | currency:'INR':true }}</span>
+                <span class="count-numbers">{{ dashboard.currentInvestments | inrCurrency }}</span>
                 <span class="count-name">Current Investments</span>
             </div>
         </div>
 
         <div class="col-md-3">
             <div class="card-counter bg-success">
-                <span class="count-numbers">{{ dashboard.currentValueBT | currency:'INR':true }}</span>
+                <span class="count-numbers">{{ dashboard.currentValueBT | inrCurrency }}</span>
                 <span class="count-name">Current Value Before Tax</span>
             </div>
         </div>
 
         <div class="col-md-3">
             <div class="card-counter bg-dark">
-                <span class="count-numbers">{{ dashboard.currentTaxes | currency:'INR':true }}</span>
+                <span class="count-numbers">{{ dashboard.currentTaxes | inrCurrency }}</span>
                 <span class="count-name">Current Taxes</span>
             </div>
         </div>
 
         <div class="col-md-3">
             <div class="card-counter bg-danger">
-                <span class="count-numbers">{{ dashboard.currentBrokerage | currency:'INR':true }}</span>
+                <span class="count-numbers">{{ dashboard.currentBrokerage | inrCurrency }}</span>
                 <span class="count-name">Current Brokerage</span>
             </div>
         </div>
@@ -62,19 +62,19 @@
     <div class="row mt-3">
         <div class="col-md-3">
             <div class="card-counter bg-dark">
-                <span class="count-numbers">{{ dashboard.netCurrentValue | currency:'INR':true }}</span>
+                <span class="count-numbers">{{ dashboard.netCurrentValue | inrCurrency }}</span>
                 <span class="count-name">Net Current Value</span>
             </div>
         </div>
         <div class="col-md-3">
             <div class="card-counter bg-primary">
-                <span class="count-numbers">{{ dashboard.currentPL | currency:'INR':true }}</span>
+                <span class="count-numbers">{{ dashboard.currentPL | inrCurrency }}</span>
                 <span class="count-name">Current Profit/Loss</span>
             </div>
         </div>
         <div class="col-md-3">
             <div class="card-counter bg-success">
-                <span class="count-numbers">{{ dashboard.currentMargin }} %</span>
+                <span class="count-numbers">{{ dashboard.currentMargin }}%</span>
                 <span class="count-name">Current Margin</span>
             </div>
         </div>
@@ -82,13 +82,13 @@
     <div class="row mt-3">
         <div class="col-md-3">
             <div class="card-counter bg-dark">
-                <span class="count-numbers">{{ dashboard.totalProfit | currency:'INR':true }}</span>
+                <span class="count-numbers">{{ dashboard.totalProfit | inrCurrency }}</span>
                 <span class="count-name">Total Profits</span>
             </div>
         </div>
         <div class="col-md-3">
             <div class="card-counter bg-primary">
-                <span class="count-numbers">{{ dashboard.totalMargin }}</span>
+                <span class="count-numbers">{{ dashboard.totalMargin }}%</span>
                 <span class="count-name">Total Margin</span>
             </div>
         </div>

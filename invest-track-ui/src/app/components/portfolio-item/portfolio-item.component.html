@@ -9,46 +9,47 @@
         <div class="form-row">
             <div class="form-group col-md-4">
                 <label for="date">Date</label>
-                <input type="text" autocomplete="off" class="form-control" #dp="bsDatepicker" bsDatepicker
-                    name="date" [(ngModel)]="equity.date">
+                <input type="text" autocomplete="off" class="form-control" #dp="bsDatepicker" bsDatepicker name="date"
+                    [(ngModel)]="equity.date">
             </div>
             <div class="form-group col-md-4">
                 <label for="name">Equity Name</label>
-                <input type="text" autocomplete="off" class="form-control" id="name" name="name"
-                    [(ngModel)]="equity.name">
+                <input type="text" autocomplete="off" [typeahead]="typeHead.equities" class="form-control" id="name"
+                    name="name" [(ngModel)]="equity.name">
             </div>
             <div class="form-group col-md-4">
                 <label for="sector">Equity Sector</label>
-                <input type="text" autocomplete="off" class="form-control" id="sector" name="sector"
-                    [(ngModel)]="equity.sector">
+                <input type="text" autocomplete="off" [typeahead]="typeHead.sectors" class="form-control" id="sector"
+                    name="sector" [(ngModel)]="equity.sector">
             </div>
         </div>
         <div class="form-row">
             <div class="form-group col-md-4">
                 <label for="equitySymbol">Equity Symbol</label>
-                <input type="text" autocomplete="off" class="form-control" id="equitySymbol" name="equitySymbol"
-                    [(ngModel)]="equity.equitySymbol">
+                <input type="text" autocomplete="off" [typeahead]="typeHead.equitySymbols" class="form-control"
+                    id="equitySymbol" name="equitySymbol" [(ngModel)]="equity.equitySymbol">
             </div>
             <div class="form-group col-md-4">
                 <label for="mcSymbol">MC Equity Symbol</label>
-                <input type="text" autocomplete="off" class="form-control" id="mcSymbol" name="mcSymbol"
-                    [(ngModel)]="equity.mcSymbol">
+                <input type="text" autocomplete="off" [typeahead]="typeHead.mcEquitySymbols" class="form-control"
+                    id="mcSymbol" name="mcSymbol" [(ngModel)]="equity.mcSymbol">
             </div>
             <div class="form-group col-md-4">
                 <label for="exchange">Exchange</label>
-                <input type="text" autocomplete="off" class="form-control" id="exchange" name="exchange"
-                    [(ngModel)]="equity.exchange">
+                <input type="text" autocomplete="off" [typeahead]="typeHead.exchanges" class="form-control"
+                    id="exchange" name="exchange" [(ngModel)]="equity.exchange">
             </div>
         </div>
         <div class="form-row">
             <div class="form-group col-md-3">
                 <label for="price">Price</label>
-                <input type="text" (change)="calculateAmounts($event)" autocomplete="off" class="form-control" id="price" name="price"
-                    [(ngModel)]="equity.price">
+                <input type="text" (change)="calculateAmounts($event)" autocomplete="off" class="form-control"
+                    id="price" name="price" [(ngModel)]="equity.price">
             </div>
             <div class="form-group col-md-3">
                 <label for="qty">Quantity</label>
-                <input type="text" (change)="calculateAmounts($event)" autocomplete="off" class="form-control" id="qty" name="qty" [(ngModel)]="equity.qty">
+                <input type="text" (change)="calculateAmounts($event)" autocomplete="off" class="form-control" id="qty"
+                    name="qty" [(ngModel)]="equity.qty">
             </div>
             <div class="form-group col-md-3">
                 <label for="target">Target (%)</label>
@@ -57,31 +58,32 @@
             </div>
             <div class="form-group col-md-3">
                 <label for="brokerage">Brokerage (%)</label>
-                <input type="text" (change)="calculateAmounts($event)" autocomplete="off" class="form-control" id="brokerage" name="brokerage"
-                    [(ngModel)]="equity.brokerage">
+                <input type="text" (change)="calculateAmounts($event)" autocomplete="off" class="form-control"
+                    id="brokerage" name="brokerage" [(ngModel)]="equity.brokerage">
             </div>
         </div>
         <div class="form-row">
             <div class="form-group col-md-4">
                 <label for="pbt">Price before Tax</label>
-                <input type="text" (change)="calculateAmounts($event)" autocomplete="off" class="form-control" id="pbt" name="pbt" [(ngModel)]="equity.pbt">
+                <input type="text" (change)="calculateAmounts($event)" autocomplete="off" class="form-control" id="pbt"
+                    name="pbt" [(ngModel)]="equity.pbt">
             </div>
             <div class="form-group col-md-4">
                 <label for="brokerageAmount">Brokerage Amount</label>
-                <input type="text" (change)="calculateAmounts($event)" autocomplete="off" class="form-control" id="brokerageAmount" name="brokerageAmount"
-                    [(ngModel)]="equity.brokerageAmount">
+                <input type="text" (change)="calculateAmounts($event)" autocomplete="off" class="form-control"
+                    id="brokerageAmount" name="brokerageAmount" [(ngModel)]="equity.brokerageAmount">
             </div>
             <div class="form-group col-md-4">
                 <label for="taxes">Taxes</label>
-                <input type="text" (change)="calculateAmounts($event)" autocomplete="off" class="form-control" id="taxes" name="taxes"
-                    [(ngModel)]="equity.taxes">
+                <input type="text" (change)="calculateAmounts($event)" autocomplete="off" class="form-control"
+                    id="taxes" name="taxes" [(ngModel)]="equity.taxes">
             </div>
         </div>
         <div class="form-row">
             <div class="form-group col-md-4">
                 <label for="net">Net</label>
-                <input type="text" (change)="calculateAmounts($event)" autocomplete="off" readonly class="form-control" id="net" name="net"
-                    [(ngModel)]="equity.net">
+                <input type="text" (change)="calculateAmounts($event)" autocomplete="off" readonly class="form-control"
+                    id="net" name="net" [(ngModel)]="equity.net">
             </div>
         </div>
     </form>

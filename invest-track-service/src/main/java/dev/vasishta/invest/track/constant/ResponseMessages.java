@@ -24,4 +24,6 @@ public interface ResponseMessages {
     String GET_DEPOSIT_FAIL = "Failed to fetch deposits. Please try again later";
 
     String GET_DB_FAIL = "Failed to fetch dashboard details. Please try again later";
+
+    String GET_TH_FAIL = "Failed to fetch suggestions. Please try again later. Failed for: ";
 }

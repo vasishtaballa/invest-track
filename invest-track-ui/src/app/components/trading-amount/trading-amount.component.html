@@ -5,11 +5,15 @@
             <input type="text" autocomplete="off" class="form-control ml-2" name="date" #dp="bsDatepicker" bsDatepicker
                 [(ngModel)]="deposit.date">
         </div>
-        <div class="form-group col-md-6">
+        <div class="form-group col-md-4">
             <label for="amount">Amount</label>
             <input type="text" autocomplete="off" class="form-control ml-2" id="amount" name="amount"
                 [(ngModel)]="deposit.amount">
             <button class="btn btn-primary ml-3" (click)="addTransaction()">Add transaction</button>
+        </div>
+        <div class="form-group col-md-3">
+            <dt class="col-6">Grand Total</dt>
+            <dd class="col-6">{{ totalAmount | inrCurrency }}</dd>
         </div>
     </form>
     <div class="col-6 mt-2" *ngIf="rowData.length > 0">

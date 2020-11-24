@@ -34,4 +34,14 @@ public interface Queries {
     String DB_OTHER_DETAILS = "SELECT bal.buyTradeId, bal.equitySymbol, eq.mcSymbol, buy.date, buy.exchange, buy.price, buy.qty, buy.target, buy.pbt, buy.brokerageAmount, buy.brokerage, buy.taxes, buy.net, bal.qty 'balQty' FROM buy_trades buy JOIN balance_trades bal ON bal.buyTradeId = buy.id JOIN equities eq ON buy.equitySymbol = eq.symbol;";
 
     String TOTAL_PROFIT_MARGIN = "SELECT ROUND(sell.net - buy.net, 2) AS profit, ROUND(((sell.net - buy.net) / buy.net) * 100, 2) AS margin FROM sample.sell_trades sell JOIN sample.buy_trades buy ON buy.id = sell.buyTradeId;";
+
+    String TH_EQUITIES = "SELECT DISTINCT(name) FROM sample.equities;";
+
+    String TH_SECTORS = "SELECT DISTINCT(sector) FROM sample.equities;";
+
+    String TH_EQUITY_SYMBOLS = "SELECT DISTINCT(symbol) FROM sample.equities;";
+
+    String TH_MC_EQUITY_SYMBOLS = "SELECT DISTINCT(mcSymbol) FROM sample.equities;";
+
+    String TH_EXCHANGES = "SELECT DISTINCT(exchange) FROM sample.buy_trades;";
 }

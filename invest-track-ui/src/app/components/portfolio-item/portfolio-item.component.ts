@@ -1,5 +1,8 @@
 import { Component, EventEmitter, OnInit } from '@angular/core';
 import { BsModalRef } from 'ngx-bootstrap/modal';
+import { ServiceURLs } from 'src/app/constants/service-urls.constant';
+import { TypeHead } from 'src/app/models/type-head/type-head.model';
+import { HttpService } from 'src/app/services/http/http.service';
 
 @Component({
   selector: 'app-portfolio-item',
@@ -10,11 +13,23 @@ export class PortfolioItemComponent implements OnInit {
 
   equity: any;
   private event: EventEmitter<any> = new EventEmitter();
+  typeHead: TypeHead;
 
-  constructor(public bsModalRef: BsModalRef) { }
+  constructor(public bsModalRef: BsModalRef, private httpService: HttpService) { }
 
   ngOnInit(): void {
     this.equity = {};
+    this.typeHead = {
+      equities: [],
+      sectors: [],
+      exchanges: [],
+      equitySymbols: [],
+      mcEquitySymbols: []
+    };
+    this.httpService.get(this.httpService.getCompleteURL(ServiceURLs.GET_TYPEHEAD_DATA))
+      .subscribe(res => {
+        this.typeHead = res.response;
+      });
   }
 
   calculateAmounts(event: any): void {

@@ -17,6 +17,7 @@ export class TradingAmountComponent implements OnInit {
   public gridApi: GridApi;
   public gridColumnApi;
   public gridOptions: GridOptions;
+  public totalAmount: number;
 
   constructor(private httpService: HttpService) { }
 
@@ -36,7 +37,17 @@ export class TradingAmountComponent implements OnInit {
       .subscribe(res => {
         this.rowData = res.response;
         this.columnDefs = DepositsColDefs.COLUMN_DEFS;
+        this.getTotalDeposits();
+        this.deposit = {};
       })
+  }
+
+  getTotalDeposits(): void {
+    let total = 0;
+    this.rowData.forEach(deposit => {
+      total += deposit.amount;
+    });
+    this.totalAmount = total;
   }
 
   addTransaction(): void {

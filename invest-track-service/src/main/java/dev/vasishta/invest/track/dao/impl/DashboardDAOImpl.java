@@ -193,6 +193,7 @@ public class DashboardDAOImpl implements DashboardDAO, Queries {
         }
     }
 
+
     private void getTotalInvestments(Connection con, Dashboard dashboard) throws SQLException {
         try (PreparedStatement statement = con.prepareStatement(DB_TOTAL_INVESTMENTS);) {
             ResultSet rs = statement.executeQuery();

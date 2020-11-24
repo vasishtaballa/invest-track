@@ -22,12 +22,14 @@ export namespace PortfolioColDefs {
         {
             headerName: 'Trade Price',
             field: 'price',
-            resizable: true
+            resizable: true,
+            valueFormatter: inrFormatter
         },
         {
             headerName: 'Current Price',
             field: 'currentPrice',
-            resizable: true
+            resizable: true,
+            valueFormatter: inrFormatter
         },
         {
             headerName: 'Quantity',
@@ -50,27 +52,32 @@ export namespace PortfolioColDefs {
             headerName: 'Margin (%)',
             field: 'margin',
             valueFormatter: percentageFormatter,
-            resizable: true
+            resizable: true,
+            cellClass: getMarginCellClass
         },
         {
             headerName: 'Price Before Tax',
             field: 'pbt',
-            resizable: true
+            resizable: true,
+            valueFormatter: inrFormatter
         },
         {
             headerName: 'Brokerage Amount',
             field: 'brokerageAmount',
-            resizable: true
+            resizable: true,
+            valueFormatter: inrFormatter
         },
         {
             headerName: 'Taxes',
             field: 'taxes',
-            resizable: true
+            resizable: true,
+            valueFormatter: inrFormatter
         },
         {
             headerName: 'Net',
             field: 'net',
-            resizable: true
+            resizable: true,
+            valueFormatter: inrFormatter
         },
         {
             headerName: '',
@@ -86,9 +93,36 @@ export namespace PortfolioColDefs {
         let date: moment.Moment = moment(params.data.date);
         return date.format('DD-MMM-YYYY');
     }
-    
+
     function percentageFormatter(params): string {
         let key = params.colDef.field;
-        return params.data[key] + ' %';
+        return params.data[key] + '%';
+    }
+
+    function inrFormatter(params): string {
+        let key = params.colDef.field;
+        let value = params.data[key];
+        if (value != null) {
+            return Number(value).toLocaleString('en-IN', {
+                style: 'currency',
+                currency: 'INR',
+                maximumFractionDigits: 2
+            });
+        }
+        return Number(0).toLocaleString('en-IN', {
+            style: 'currency',
+            currency: 'INR',
+            maximumFractionDigits: 2
+        });
+    }
+
+    function getMarginCellClass(params): string[] {
+        let classes: string[] = [];
+        let margin = params.data.margin;
+        if (margin < 0)
+            classes.push('loss');
+        else
+            classes.push('profit');
+        return classes;
     }
 }
