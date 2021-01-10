@@ -1,7 +1,7 @@
 package dev.vasishta.invest.track.dao;
 
 public interface Queries {
-    String GET_PORTFOLIO = "SELECT buy.id AS id, buy.equitySymbol AS equitySymbol, eq.name AS equityName, eq.mcSymbol AS mcSymbol, buy.date AS date, buy.exchange AS exchange, buy.price AS price, bal.qty AS qty, buy.target AS target, buy.brokerage AS brokerage, buy.pbt AS pbt, buy.brokerageAmount AS brokerageAmount, buy.taxes AS taxes, buy.net AS net FROM balance_trades bal JOIN buy_trades buy ON bal.buyTradeId = buy.id JOIN equities eq ON eq.symbol = bal.equitySymbol;";
+    String GET_PORTFOLIO = "SELECT buy.id AS id, buy.equitySymbol AS equitySymbol, eq.name AS equityName, eq.mcSymbol AS mcSymbol, buy.date AS date, buy.exchange AS exchange, buy.price AS price, bal.qty AS qty, buy.target AS target, buy.brokerage AS brokerage, buy.pbt AS pbt, buy.brokerageAmount AS brokerageAmount, buy.taxes AS taxes, buy.net AS net FROM balance_trades bal JOIN buy_trades buy ON bal.buyTradeId = buy.id JOIN equities eq ON eq.symbol = bal.equitySymbol ORDER BY buy.date;";
 
     String ADD_TRADE = "INSERT INTO `sample`.`buy_trades` ( `equitySymbol`, `date`, `exchange`, `price`, `qty`, `target`, `brokerage`, `pbt`, `brokerageAmount`, `taxes`, `net`) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
 
@@ -33,7 +33,7 @@ public interface Queries {
 
     String DB_OTHER_DETAILS = "SELECT bal.buyTradeId, bal.equitySymbol, eq.mcSymbol, buy.date, buy.exchange, buy.price, buy.qty, buy.target, buy.pbt, buy.brokerageAmount, buy.brokerage, buy.taxes, buy.net, bal.qty 'balQty' FROM buy_trades buy JOIN balance_trades bal ON bal.buyTradeId = buy.id JOIN equities eq ON buy.equitySymbol = eq.symbol;";
 
-    String TOTAL_PROFIT_MARGIN = "SELECT ROUND(sell.net - buy.net, 2) AS profit, ROUND(((sell.net - buy.net) / buy.net) * 100, 2) AS margin FROM sample.sell_trades sell JOIN sample.buy_trades buy ON buy.id = sell.buyTradeId;";
+    String TOTAL_PROFIT_MARGIN = "SELECT buy.qty as buy_qty, sell.qty as sell_qty, buy.net as buy_net, sell.net as sell_net FROM sample.buy_trades buy JOIN sample.sell_trades sell ON buy.id = sell.buyTradeId;";
 
     String TH_EQUITIES = "SELECT DISTINCT(name) FROM sample.equities;";
 
@@ -44,4 +44,8 @@ public interface Queries {
     String TH_MC_EQUITY_SYMBOLS = "SELECT DISTINCT(mcSymbol) FROM sample.equities;";
 
     String TH_EXCHANGES = "SELECT DISTINCT(exchange) FROM sample.buy_trades;";
+
+    String ADD_QUERY_UPDATE = "INSERT INTO `sample`.`query_updates` (`table`, `type`, `query`) VALUES (?, ?, ?);";
+
+    String GET_QUERY_UPDATES = "";
 }

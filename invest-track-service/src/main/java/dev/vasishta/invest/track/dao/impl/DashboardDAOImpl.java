@@ -44,7 +44,8 @@ public class DashboardDAOImpl implements DashboardDAO, Queries {
             getTotalWithdrew(con, dashboard);
             getTotalTaxes(con, dashboard);
             getTotalBrokerage(con, dashboard);
-            getTotalProfitMargin(con, dashboard);
+            getTotalProfit(con, dashboard);
+            getTotalMargin(con, dashboard);
             getOtherDetails(con, dashboard);
             roundValues(dashboard);
             baseBean.setResponse(dashboard);
@@ -54,21 +55,40 @@ public class DashboardDAOImpl implements DashboardDAO, Queries {
         }
     }
 
-    private void getTotalProfitMargin(Connection con, Dashboard dashboard) throws SQLException {
-        double totalProfit = 0, totalMargin = 0;
+    private void getTotalMargin(Connection con, Dashboard dashboard) {
+    }
+
+    private void getTotalProfit(Connection con, Dashboard dashboard) throws SQLException {
+        double totalProfit = 0, totalInvestment = 0;
         try (PreparedStatement statement = con.prepareStatement(TOTAL_PROFIT_MARGIN)) {
             System.out.println(statement.toString());
             ResultSet resultSet = statement.executeQuery();
+            int count = 0;
             while (resultSet.next()) {
-                totalProfit += resultSet.getDouble(1);
-                totalMargin += resultSet.getDouble(2);
+                int buyQty = resultSet.getInt(1);
+                int sellQty = resultSet.getInt(2);
+                double buyNet = resultSet.getDouble(3);
+                double sellNet = resultSet.getDouble(4);
+                double investment = getInvestment(buyQty, sellQty, buyNet, sellNet);
+                totalInvestment += investment;
+                double profit = getProfitForTrade(sellNet, investment);
+                totalProfit += profit;
+                count += 1;
             }
             dashboard.setTotalProfit(totalProfit);
-            dashboard.setTotalMargin(totalMargin);
+            dashboard.setTotalMargin((totalProfit / totalInvestment) * 100);
         } catch (SQLException ex) {
             ex.printStackTrace();
             throw ex;
         }
+    }
+
+    private double getInvestment(int buyQty, int sellQty, double buyNet, double sellNet) {
+        return ((buyNet / buyQty) * sellQty);
+    }
+
+    private double getProfitForTrade(double sellNet, double investment) {
+        return sellNet - investment;
     }
 
     private void getOtherDetails(Connection con, Dashboard dashboard) throws SQLException {

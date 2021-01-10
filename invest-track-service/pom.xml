@@ -12,6 +12,7 @@
 	<artifactId>invest-track-service</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>invest-track-service</name>
+	<packaging>war</packaging>
 	<description>Application to track investments</description>
 
 	<properties>
@@ -44,6 +45,11 @@
 			<groupId>com.zaxxer</groupId>
 			<artifactId>HikariCP</artifactId>
 			<version>3.4.5</version>
+		</dependency>
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>1.2.17</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>

@@ -1,14 +1,14 @@
 package dev.vasishta.invest.track.dao.impl;
 
-import dev.vasishta.invest.track.bean.BaseBean;
-import dev.vasishta.invest.track.bean.BuyTrade;
-import dev.vasishta.invest.track.bean.Message;
-import dev.vasishta.invest.track.bean.SellTrade;
+import dev.vasishta.invest.track.bean.*;
 import dev.vasishta.invest.track.config.DBConfig;
 import dev.vasishta.invest.track.constant.MessageType;
+import dev.vasishta.invest.track.constant.QueryType;
 import dev.vasishta.invest.track.constant.ResponseMessages;
-import dev.vasishta.invest.track.dao.Queries;
+import dev.vasishta.invest.track.constant.Tables;
+import dev.vasishta.invest.track.dao.QueryUpdateDAO;
 import dev.vasishta.invest.track.dao.TradeDAO;
+import dev.vasishta.invest.track.util.DBUtils;
 import dev.vasishta.invest.track.util.ResponseUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -16,7 +16,7 @@ import org.springframework.stereotype.Component;
 import java.sql.*;
 
 @Component
-public class TradeDAOImpl implements TradeDAO, Queries {
+public class TradeDAOImpl extends QueryUpdateDAO implements TradeDAO {
 
     @Autowired
     private DBConfig dbConfig;
@@ -41,7 +41,8 @@ public class TradeDAOImpl implements TradeDAO, Queries {
             statement.setDouble(i++, buyTrade.getBrokerageAmount());
             statement.setDouble(i++, buyTrade.getTaxes());
             statement.setDouble(i++, buyTrade.getNet());
-            System.out.println(statement.toString());
+            System.out.println(DBUtils.getQuery(statement));
+            updateQueryTable(new QueryUpdate(Tables.BUY_TRADES.name(), QueryType.INSERT.name(), DBUtils.getQuery(statement)));
             statement.executeUpdate();
             ResultSet rs = statement.getGeneratedKeys();
             if (rs.next()) {
@@ -108,6 +109,7 @@ public class TradeDAOImpl implements TradeDAO, Queries {
             statement.setDouble(i++, sellTrade.getBrokerageAmount());
             statement.setDouble(i++, sellTrade.getTaxes());
             statement.setDouble(i++, sellTrade.getNet());
+            updateQueryTable(new QueryUpdate(Tables.SELL_TRADES.name(), QueryType.INSERT.name(), DBUtils.getQuery(statement)));
             statement.execute();
             baseBean.getMessages().add(ResponseUtil.getMessageObj(ResponseMessages.INSERT_SELL_TRADES_SUCCESS, MessageType.SUCCESS));
         } catch (SQLException ex) {
@@ -118,6 +120,7 @@ public class TradeDAOImpl implements TradeDAO, Queries {
     private Message deleteFromBalanceTrades(SellTrade sellTrade, Connection con) {
         try (PreparedStatement statement = con.prepareStatement(DELETE_BALANCE_TRADE)) {
             statement.setInt(1, sellTrade.getBuyTrade().getId());
+            updateQueryTable(new QueryUpdate(Tables.BALANCE_TRADES.name(), QueryType.DELETE.name(), DBUtils.getQuery(statement)));
             statement.execute();
             return ResponseUtil.getMessageObj(ResponseMessages.DELETE_BALANCE_TRADES_SUCCESS, MessageType.SUCCESS);
         } catch (SQLException ex) {
@@ -130,6 +133,7 @@ public class TradeDAOImpl implements TradeDAO, Queries {
         try (PreparedStatement statement = con.prepareStatement(UPDATE_BALANCE_TRADE)) {
             statement.setInt(1, balance - sellTrade.getQty());
             statement.setInt(2, sellTrade.getBuyTrade().getId());
+            updateQueryTable(new QueryUpdate(Tables.BALANCE_TRADES.name(), QueryType.UPDATE.name(), DBUtils.getQuery(statement)));
             statement.execute();
             return ResponseUtil.getMessageObj(ResponseMessages.UPDATE_BALANCE_TRADES_SUCCESS, MessageType.SUCCESS);
         } catch (SQLException ex) {
@@ -150,6 +154,7 @@ public class TradeDAOImpl implements TradeDAO, Queries {
                     addEquityStatement.setString(i++, buyTrade.getMcSymbol());
                     addEquityStatement.setString(i++, buyTrade.getName());
                     addEquityStatement.setString(i++, buyTrade.getSector());
+                    updateQueryTable(new QueryUpdate(Tables.EQUITIES.name(), QueryType.INSERT.name(), DBUtils.getQuery(statement)));
                     addEquityStatement.execute();
                 }
             }
@@ -163,7 +168,8 @@ public class TradeDAOImpl implements TradeDAO, Queries {
             statement.setString(i++, buyTrade.getEquitySymbol());
             statement.setString(i++, buyTrade.getExchange());
             statement.setInt(i++, buyTrade.getQty());
-            System.out.println(statement.toString());
+            System.out.println(DBUtils.getQuery(statement));
+            updateQueryTable(new QueryUpdate(Tables.BALANCE_TRADES.name(), QueryType.INSERT.name(), DBUtils.getQuery(statement)));
             statement.execute();
             return ResponseUtil.getMessageObj(ResponseMessages.INSERT_BALANCE_TRADES_SUCCESS, MessageType.SUCCESS);
         } catch (SQLException ex) {

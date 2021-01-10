@@ -1,7 +1,7 @@
 <div class="container" *ngIf="dashboard">
     <div class="row mt-5">
         <div class="col-md-3">
-            <div class="card-counter bg-danger">
+            <div class="card-counter bg-dark">
                 <span class="count-numbers">{{ dashboard.totalInvestments | inrCurrency }}</span>
                 <span class="count-name">Total Investments</span>
             </div>
@@ -15,14 +15,14 @@
         </div>
 
         <div class="col-md-3">
-            <div class="card-counter bg-success">
+            <div class="card-counter bg-dark">
                 <span class="count-numbers">{{ dashboard.totalTaxes | inrCurrency }}</span>
                 <span class="count-name">Total Taxes</span>
             </div>
         </div>
 
         <div class="col-md-3">
-            <div class="card-counter bg-warning">
+            <div class="card-counter bg-dark">
                 <span class="count-numbers">{{ dashboard.totalBrokerage | inrCurrency }}</span>
                 <span class="count-name">Total Brokerage</span>
             </div>
@@ -31,14 +31,14 @@
 
     <div class="row mt-3">
         <div class="col-md-3">
-            <div class="card-counter bg-warning">
+            <div class="card-counter bg-dark">
                 <span class="count-numbers">{{ dashboard.currentInvestments | inrCurrency }}</span>
                 <span class="count-name">Current Investments</span>
             </div>
         </div>
 
         <div class="col-md-3">
-            <div class="card-counter bg-success">
+            <div class="card-counter bg-dark">
                 <span class="count-numbers">{{ dashboard.currentValueBT | inrCurrency }}</span>
                 <span class="count-name">Current Value Before Tax</span>
             </div>
@@ -52,7 +52,7 @@
         </div>
 
         <div class="col-md-3">
-            <div class="card-counter bg-danger">
+            <div class="card-counter bg-dark">
                 <span class="count-numbers">{{ dashboard.currentBrokerage | inrCurrency }}</span>
                 <span class="count-name">Current Brokerage</span>
             </div>
@@ -67,13 +67,13 @@
             </div>
         </div>
         <div class="col-md-3">
-            <div class="card-counter bg-primary">
+            <div class="card-counter bg-dark">
                 <span class="count-numbers">{{ dashboard.currentPL | inrCurrency }}</span>
                 <span class="count-name">Current Profit/Loss</span>
             </div>
         </div>
         <div class="col-md-3">
-            <div class="card-counter bg-success">
+            <div class="card-counter bg-dark">
                 <span class="count-numbers">{{ dashboard.currentMargin }}%</span>
                 <span class="count-name">Current Margin</span>
             </div>
@@ -87,7 +87,7 @@
             </div>
         </div>
         <div class="col-md-3">
-            <div class="card-counter bg-primary">
+            <div class="card-counter bg-dark">
                 <span class="count-numbers">{{ dashboard.totalMargin }}%</span>
                 <span class="count-name">Total Margin</span>
             </div>

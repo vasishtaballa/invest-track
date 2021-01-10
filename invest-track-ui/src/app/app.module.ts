@@ -6,6 +6,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
+import { TabsModule } from 'ngx-bootstrap/tabs'
 
 import { AgGridModule } from 'ag-grid-angular';
 
@@ -20,6 +21,8 @@ import { SellBtnRendererComponent } from './components/ag-grid-components/sell-b
 import { TradingAmountComponent } from './components/trading-amount/trading-amount.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { InrCurrencyPipe } from './pipes/inr-currency/inr-currency.pipe';
+import { PortfolioSummaryComponent } from './components/portfolio/portfolio-summary/portfolio-summary.component';
+import { PortfolioDetailsComponent } from './components/portfolio/portfolio-details/portfolio-details.component';
 
 
 const routes: Routes = [
@@ -39,7 +42,9 @@ const routes: Routes = [
     SellBtnRendererComponent,
     TradingAmountComponent,
     DashboardComponent,
-    InrCurrencyPipe
+    InrCurrencyPipe,
+    PortfolioSummaryComponent,
+    PortfolioDetailsComponent
   ],
   imports: [
     BrowserModule,
@@ -50,7 +55,8 @@ const routes: Routes = [
     ModalModule.forRoot(),
     BsDatepickerModule.forRoot(),
     AgGridModule.withComponents([]),
-    TypeaheadModule.forRoot()
+    TypeaheadModule.forRoot(),
+    TabsModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

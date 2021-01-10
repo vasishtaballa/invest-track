@@ -25,4 +25,11 @@ public class PortfolioController {
         baseBean.setResponse(trades);
         return new ResponseEntity<>(baseBean, HttpStatus.OK);
     }
+
+    @GetMapping("/getPortfolioSummary")
+    public ResponseEntity<BaseBean> getPortfolioSummary() {
+        BaseBean baseBean = new BaseBean();
+        portfolioService.getPortfolioSummary(baseBean);
+        return null;
+    }
 }
