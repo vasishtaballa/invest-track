@@ -8,4 +8,9 @@ export class Dashboard {
     currentBrokerage: number;
     currentValueBT: number;
     netCurrentValue: number;
+    currentPL: number;
+    currentMargin: number;
+    totalProfit: number;
+    totalMargin: number;
+    depositBal: number;
 }

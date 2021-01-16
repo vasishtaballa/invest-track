@@ -17,4 +17,5 @@ public class Dashboard {
     private double currentMargin;
     private double totalProfit;
     private double totalMargin;
+    private double depositBal;
 }

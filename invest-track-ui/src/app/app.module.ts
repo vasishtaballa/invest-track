@@ -23,12 +23,14 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { InrCurrencyPipe } from './pipes/inr-currency/inr-currency.pipe';
 import { PortfolioSummaryComponent } from './components/portfolio/portfolio-summary/portfolio-summary.component';
 import { PortfolioDetailsComponent } from './components/portfolio/portfolio-details/portfolio-details.component';
+import { StatementComponent } from './components/statement/statement.component';
 
 
 const routes: Routes = [
   { path: 'portfolio', component: PortfolioComponent },
   { path: 'trading-amount', component: TradingAmountComponent },
   { path: 'dashboard', component: DashboardComponent },
+  { path: 'statement', component: StatementComponent },
   { path: '', redirectTo: 'dashboard', pathMatch: 'full' }
 ];
 
@@ -44,7 +46,8 @@ const routes: Routes = [
     DashboardComponent,
     InrCurrencyPipe,
     PortfolioSummaryComponent,
-    PortfolioDetailsComponent
+    PortfolioDetailsComponent,
+    StatementComponent
   ],
   imports: [
     BrowserModule,

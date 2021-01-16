@@ -1,7 +1,7 @@
 package dev.vasishta.invest.track.dao;
 
 public interface Queries {
-    String GET_PORTFOLIO = "SELECT buy.id AS id, buy.equitySymbol AS equitySymbol, eq.name AS equityName, eq.mcSymbol AS mcSymbol, buy.date AS date, buy.exchange AS exchange, buy.price AS price, bal.qty AS qty, buy.target AS target, buy.brokerage AS brokerage, buy.pbt AS pbt, buy.brokerageAmount AS brokerageAmount, buy.taxes AS taxes, buy.net AS net FROM balance_trades bal JOIN buy_trades buy ON bal.buyTradeId = buy.id JOIN equities eq ON eq.symbol = bal.equitySymbol ORDER BY buy.date;";
+    String GET_PORTFOLIO = "SELECT buy.id AS id, buy.equitySymbol AS equitySymbol, eq.name AS equityName, eq.mcSymbol AS mcSymbol, buy.date AS date, buy.exchange AS exchange, buy.price AS price, bal.qty AS balQty, buy.qty as buyQty, buy.target AS target, buy.brokerage AS brokerage, buy.pbt AS pbt, buy.brokerageAmount AS brokerageAmount, buy.taxes AS taxes, buy.net AS net FROM balance_trades bal JOIN buy_trades buy ON bal.buyTradeId = buy.id JOIN equities eq ON eq.symbol = bal.equitySymbol ORDER BY buy.date;";
 
     String ADD_TRADE = "INSERT INTO `sample`.`buy_trades` ( `equitySymbol`, `date`, `exchange`, `price`, `qty`, `target`, `brokerage`, `pbt`, `brokerageAmount`, `taxes`, `net`) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
 
@@ -47,5 +47,11 @@ public interface Queries {
 
     String ADD_QUERY_UPDATE = "INSERT INTO `sample`.`query_updates` (`table`, `type`, `query`) VALUES (?, ?, ?);";
 
+    String GET_TOTAL_DEPOSIT_AMOUNT = "SELECT SUM(amount) AS total_amount FROM deposits;";
+
     String GET_QUERY_UPDATES = "";
+
+    String GET_BUY_STATEMENT = "SELECT buy.date, 'BUY' AS type, equity.name as equityName, buy.qty, buy.price, buy.net FROM buy_trades buy JOIN equities equity ON equity.symbol = buy.equitySymbol;";
+
+    String GET_SELL_STATEMENT = "SELECT sell.date, 'SELL' AS type, equity.name as equityName, sell.qty, sell.price, sell.net FROM sell_trades sell JOIN buy_trades buy ON buy.id = sell.buyTradeId JOIN equities equity ON equity.symbol = buy.equitySymbol;";
 }

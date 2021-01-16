@@ -13,7 +13,8 @@ public class Trade {
     private Date date;
     private String exchange;
     private double price;
-    private int qty;
+    private int buyQty;
+    private int balQty;
     private double target;
     private double brokerage;
     private double pbt;

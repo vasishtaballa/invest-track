@@ -1,8 +1,9 @@
 package dev.vasishta.invest.track.dao;
 
 import dev.vasishta.invest.track.bean.BaseBean;
+import dev.vasishta.invest.track.bean.Dashboard;
 
 public interface DashboardDAO {
 
-    void getDashboard(BaseBean baseBean);
+    Dashboard getDashboard(BaseBean baseBean);
 }

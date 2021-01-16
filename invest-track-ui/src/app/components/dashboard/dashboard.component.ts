@@ -22,7 +22,7 @@ export class DashboardComponent implements OnInit {
     this.httpService.get(this.httpService.getCompleteURL(ServiceURLs.GET_DASHBOARD))
     .subscribe(res => {
       this.dashboard = res.response;
-    })
+    });
   }
 
 }

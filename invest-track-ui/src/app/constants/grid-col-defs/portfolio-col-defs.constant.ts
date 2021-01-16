@@ -6,7 +6,8 @@ export namespace PortfolioColDefs {
         {
             headerName: 'Equity Name',
             field: 'equityName',
-            resizable: true
+            resizable: true,
+            filter: true
         },
         {
             headerName: 'Trade Date',
@@ -33,7 +34,7 @@ export namespace PortfolioColDefs {
         },
         {
             headerName: 'Quantity',
-            field: 'qty',
+            field: 'balQty',
             resizable: true
         },
         {

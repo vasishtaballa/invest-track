@@ -1,20 +1,17 @@
 package dev.vasishta.invest.track.dao.impl;
 
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
 import dev.vasishta.invest.track.bean.BaseBean;
 import dev.vasishta.invest.track.bean.Dashboard;
 import dev.vasishta.invest.track.bean.DashboardDetails;
 import dev.vasishta.invest.track.config.DBConfig;
-import dev.vasishta.invest.track.constant.GenericConstants;
 import dev.vasishta.invest.track.constant.MessageType;
 import dev.vasishta.invest.track.constant.ResponseMessages;
 import dev.vasishta.invest.track.dao.DashboardDAO;
 import dev.vasishta.invest.track.dao.Queries;
 import dev.vasishta.invest.track.util.DBUtils;
+import dev.vasishta.invest.track.util.GeneralUtils;
 import dev.vasishta.invest.track.util.ResponseUtil;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
@@ -37,15 +34,15 @@ public class DashboardDAOImpl implements DashboardDAO, Queries {
     RestTemplate template;
 
     @Override
-    public void getDashboard(BaseBean baseBean) {
+    public Dashboard getDashboard(BaseBean baseBean) {
         Dashboard dashboard = new Dashboard();
         try (Connection con = dbConfig.getDataSource().getConnection();) {
             getTotalInvestments(con, dashboard);
             getTotalWithdrew(con, dashboard);
             getTotalTaxes(con, dashboard);
             getTotalBrokerage(con, dashboard);
-            getTotalProfit(con, dashboard);
-            getTotalMargin(con, dashboard);
+            getTotalProfitAndMargin(con, dashboard);
+            getTotalDepositBal(con, dashboard);
             getOtherDetails(con, dashboard);
             roundValues(dashboard);
             baseBean.setResponse(dashboard);
@@ -53,12 +50,23 @@ public class DashboardDAOImpl implements DashboardDAO, Queries {
             ex.printStackTrace();
             baseBean.getMessages().add(ResponseUtil.getMessageObj(ResponseMessages.GET_DB_FAIL, MessageType.FAIL));
         }
+        return dashboard;
     }
 
-    private void getTotalMargin(Connection con, Dashboard dashboard) {
+    private void getTotalDepositBal(Connection con, Dashboard dashboard) {
+        try (PreparedStatement statement = con.prepareStatement(GET_TOTAL_DEPOSIT_AMOUNT)) {
+            ResultSet resultSet = statement.executeQuery();
+            double depositBal = 0;
+            if (resultSet.next()) {
+                depositBal = resultSet.getDouble(1);
+                dashboard.setDepositBal(depositBal);
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
     }
 
-    private void getTotalProfit(Connection con, Dashboard dashboard) throws SQLException {
+    private void getTotalProfitAndMargin(Connection con, Dashboard dashboard) throws SQLException {
         double totalProfit = 0, totalInvestment = 0;
         try (PreparedStatement statement = con.prepareStatement(TOTAL_PROFIT_MARGIN)) {
             System.out.println(statement.toString());
@@ -162,10 +170,7 @@ public class DashboardDAOImpl implements DashboardDAO, Queries {
         if (currentPriceMap.containsKey(dashboardDetails.getEquitySymbol()))
             return currentPriceMap.get(dashboardDetails.getEquitySymbol());
         else {
-            String url = GenericConstants.MONEY_CONTROL_API + dashboardDetails.getExchange().toLowerCase() + "/equitycash/" + dashboardDetails.getMcSymbol();
-            ResponseEntity<String> response = template.getForEntity(url, String.class);
-            JsonObject jsonObject = JsonParser.parseString(response.getBody()).getAsJsonObject();
-            double currentPrice = Double.parseDouble(jsonObject.getAsJsonObject("data").getAsJsonPrimitive("pricecurrent").getAsString());
+            double currentPrice = GeneralUtils.getCurrentPriceFromMC(template, dashboardDetails.getExchange(), dashboardDetails.getMcSymbol());
             currentPriceMap.put(dashboardDetails.getEquitySymbol(), currentPrice);
             return currentPrice;
         }

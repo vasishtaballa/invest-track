@@ -1,6 +1,7 @@
 package dev.vasishta.invest.track.controller;
 
 import dev.vasishta.invest.track.bean.BaseBean;
+import dev.vasishta.invest.track.bean.Stock;
 import dev.vasishta.invest.track.bean.Trade;
 import dev.vasishta.invest.track.service.PortfolioService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +30,8 @@ public class PortfolioController {
     @GetMapping("/getPortfolioSummary")
     public ResponseEntity<BaseBean> getPortfolioSummary() {
         BaseBean baseBean = new BaseBean();
-        portfolioService.getPortfolioSummary(baseBean);
-        return null;
+        List<Stock> stocks = portfolioService.getPortfolioSummary(baseBean);
+        baseBean.setResponse(stocks);
+        return new ResponseEntity<>(baseBean, HttpStatus.OK);
     }
 }
