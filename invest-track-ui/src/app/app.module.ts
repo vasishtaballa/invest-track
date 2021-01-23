@@ -24,6 +24,7 @@ import { InrCurrencyPipe } from './pipes/inr-currency/inr-currency.pipe';
 import { PortfolioSummaryComponent } from './components/portfolio/portfolio-summary/portfolio-summary.component';
 import { PortfolioDetailsComponent } from './components/portfolio/portfolio-details/portfolio-details.component';
 import { StatementComponent } from './components/statement/statement.component';
+import { EquityPlComponent } from './components/equity-pl/equity-pl.component';
 
 
 const routes: Routes = [
@@ -31,6 +32,7 @@ const routes: Routes = [
   { path: 'trading-amount', component: TradingAmountComponent },
   { path: 'dashboard', component: DashboardComponent },
   { path: 'statement', component: StatementComponent },
+  { path: 'equity-pl', component: EquityPlComponent },
   { path: '', redirectTo: 'dashboard', pathMatch: 'full' }
 ];
 
@@ -47,7 +49,8 @@ const routes: Routes = [
     InrCurrencyPipe,
     PortfolioSummaryComponent,
     PortfolioDetailsComponent,
-    StatementComponent
+    StatementComponent,
+    EquityPlComponent
   ],
   imports: [
     BrowserModule,

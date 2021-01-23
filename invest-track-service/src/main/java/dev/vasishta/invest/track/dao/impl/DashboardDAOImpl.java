@@ -71,7 +71,6 @@ public class DashboardDAOImpl implements DashboardDAO, Queries {
         try (PreparedStatement statement = con.prepareStatement(TOTAL_PROFIT_MARGIN)) {
             System.out.println(statement.toString());
             ResultSet resultSet = statement.executeQuery();
-            int count = 0;
             while (resultSet.next()) {
                 int buyQty = resultSet.getInt(1);
                 int sellQty = resultSet.getInt(2);
@@ -81,7 +80,6 @@ public class DashboardDAOImpl implements DashboardDAO, Queries {
                 totalInvestment += investment;
                 double profit = getProfitForTrade(sellNet, investment);
                 totalProfit += profit;
-                count += 1;
             }
             dashboard.setTotalProfit(totalProfit);
             dashboard.setTotalMargin((totalProfit / totalInvestment) * 100);

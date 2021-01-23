@@ -35,6 +35,8 @@ public interface Queries {
 
     String TOTAL_PROFIT_MARGIN = "SELECT buy.qty as buy_qty, sell.qty as sell_qty, buy.net as buy_net, sell.net as sell_net FROM sample.buy_trades buy JOIN sample.sell_trades sell ON buy.id = sell.buyTradeId;";
 
+    String TOTAL_PROFIT_MARGIN_EQ_WISE = "SELECT equities.symbol AS eq_symbol, equities.name AS eq_name, buy.qty AS buy_qty, sell.qty AS sell_qty, buy.net AS buy_net, sell.net AS sell_net FROM sample.buy_trades buy JOIN sample.sell_trades sell ON buy.id = sell.buyTradeId JOIN sample.equities equities ON buy.equitySymbol = equities.symbol;";
+
     String TH_EQUITIES = "SELECT DISTINCT(name) FROM sample.equities;";
 
     String TH_SECTORS = "SELECT DISTINCT(sector) FROM sample.equities;";

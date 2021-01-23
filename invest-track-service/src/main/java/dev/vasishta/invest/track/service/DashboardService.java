@@ -16,15 +16,6 @@ public class DashboardService {
     DashboardDAO dashboardDAO;
 
     public void getDashboard(BaseBean baseBean) {
-        Dashboard dashboard = dashboardDAO.getDashboard(baseBean);
-        getDashboardItems(dashboard);
-    }
-
-    private void getDashboardItems(Dashboard dashboard) {
-        ObjectMapper mapper = new ObjectMapper();
-        Map<String, Object> map = mapper.convertValue(dashboard, Map.class);
-        for (Map.Entry<String, Object> entry : map.entrySet()) {
-
-        }
+        dashboardDAO.getDashboard(baseBean);
     }
 }
