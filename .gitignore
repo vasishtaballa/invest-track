@@ -39,6 +39,7 @@ nbdist/
 /node
 /node_modules
 node/
+**/node_modules
 
 # IDEs and editors
 /.idea
