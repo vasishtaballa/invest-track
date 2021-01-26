@@ -3,17 +3,16 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
-		<groupId>org.springframework.boot</groupId>
-		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.3.6.BUILD-SNAPSHOT</version>
-		<relativePath/> <!-- lookup parent from repository -->
+		<groupId>dev.vasishta.invest.track</groupId>
+		<artifactId>invest-track</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
 	</parent>
 	<groupId>dev.vasishta.invest.track</groupId>
 	<artifactId>invest-track-service</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>invest-track-service</name>
 	<packaging>war</packaging>
-	<description>Application to track investments</description>
+	<description>Services for Invest Track</description>
 
 	<properties>
 		<java.version>1.8</java.version>
@@ -67,11 +66,39 @@
 			<artifactId>gson</artifactId>
 			<version>2.8.6</version>
 		</dependency>
-
+		<dependency>
+			<groupId>dev.vasishta.invest.track</groupId>
+			<artifactId>invest-track-ui</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter-api</artifactId>
+			<version>5.7.0</version>
+			<scope>test</scope>
+		</dependency>
 	</dependencies>
 
 	<build>
 		<plugins>
+			<plugin>
+				<artifactId>maven-resources-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>copy-resources</id>
+						<phase>validate</phase>
+						<goals><goal>copy-resources</goal></goals>
+						<configuration>
+							<outputDirectory>${project.build.directory}/classes/resources/</outputDirectory >
+							<resources>
+								<resource>
+									<directory>${project.parent.basedir}/invest-track-ui/src/main/webapp/dist/invest-track-ui/</directory >
+								</resource>
+							</resources>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
