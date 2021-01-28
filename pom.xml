@@ -5,22 +5,9 @@
   <artifactId>invest-track</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <packaging>pom</packaging>
-  <parent>
-    <groupId>org.springframework.boot</groupId>
-    <artifactId>spring-boot-starter-parent</artifactId>
-    <version>2.0.4.RELEASE</version>
-    <relativePath />
-  </parent>
   
   <modules>
-   <module>invest-track-service</module>
     <module>invest-track-ui</module>
+    <module>invest-track-service</module>
   </modules>
-  
-  <dependencies>
-    <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-web</artifactId>
-    </dependency>
-  </dependencies>
 </project>
