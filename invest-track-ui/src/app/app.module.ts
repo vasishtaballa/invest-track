@@ -56,7 +56,7 @@ const routes: Routes = [
     BrowserModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    RouterModule.forRoot(routes),
+    RouterModule.forRoot(routes, {useHash: true}),
     FormsModule,
     ModalModule.forRoot(),
     BsDatepickerModule.forRoot(),

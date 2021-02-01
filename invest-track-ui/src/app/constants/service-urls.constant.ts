@@ -1,5 +1,5 @@
 export namespace ServiceURLs {
-    export const BASE_URL = 'http://localhost:8080/invest-track/';
+    export const BASE_URL = 'http://localhost:8888/invest-track/';
     export const GET_PORTFOLIO = 'portfolio/getPortfolio';
     export const GET_PORTFOLIO_SUMMARY = 'portfolio/getPortfolioSummary';
     export const GET_STATEMENT = 'statement/getStatement';
